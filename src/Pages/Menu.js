@@ -1,5 +1,6 @@
-import React from 'react'
+import React from "react";
 import "../Style/menu.css";
+
 import APIService from '../ApiService/ProductAPIService'
 
 export default class Menu extends React.Component {
@@ -8,13 +9,13 @@ export default class Menu extends React.Component {
         super(props)
     
         this.state = {
-             user: []
+             categories: []
         }
     }
     
     componentDidMount(){
         APIService.getProducts().then((data) => {
-            this.setState({ user: data })
+            this.setState({ categories: data })
             console.log(this.state.data)
           })
           .catch(function (ex) {
@@ -35,10 +36,10 @@ export default class Menu extends React.Component {
                     </thead>
                     <tbody>
                         {
-                            this.state.user.map(user =>
-                                    <tr key={user.id}>
-                                        <td>{user.id}</td>
-                                        <td>{user.name}</td>
+                            this.state.categories.map(categories =>
+                                    <tr key={categories.id}>
+                                        <td>{categories.id}</td>
+                                        <td>{categories.name}</td>
                                     </tr>
                             )
                         }
