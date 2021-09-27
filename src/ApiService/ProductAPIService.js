@@ -1,4 +1,5 @@
 const PRODUCTS_REST_API = 'http://localhost:8080/categories';
+const CATEGORIESBYID_REST_API = 'http://localhost:8080/products/category/';
 
 
 class ProductAPIService {   
@@ -27,6 +28,17 @@ class ProductAPIService {
         .then(res => res.json());        
     }
 
+    getProductsByCategoryId({id}){
+        return fetch(CATEGORIESBYID_REST_API + {id},{ 
+            method: 'get',
+                headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                },
+                'credentials': 'same-origin'
+        })
+        .then(res => res.json());        
+    }
 }
 
 export default new ProductAPIService();

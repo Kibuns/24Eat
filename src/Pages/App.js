@@ -1,7 +1,8 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import "../Style/App.css";
-import Menu from "./Menu";
+import Menu from "../Pages/Menu";
+import Product from "../Pages/Product";
 import { Container } from 'reactstrap';
 import {Nav, Navbar} from 'react-bootstrap';
 
@@ -12,6 +13,7 @@ function App() {
           <Switch>
               <Route exact path='/' component={Home} />
               <Route exact path='/menu' component={Menu} />
+              <Route exact path='/menu' component={Product} />
           </Switch>
         </div>
       </Router>

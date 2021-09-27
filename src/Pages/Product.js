@@ -4,19 +4,19 @@ import Card from "../Components/Card";
 
 import APIService from '../ApiService/ProductAPIService'
 
-export default class Menu extends React.Component {
+export default class Product extends React.Component {
 
     constructor(props) {
         super(props)
     
         this.state = {
-             categories: []
+             products: []
         }
     }
     
-    componentDidMount(){
-        APIService.getProducts().then((data) => {
-            this.setState({ categories: data })
+    componentDidMount({id}){
+        APIService.getProductsByCategoryId({id}).then((data) => {
+            this.setState({ products: data })
             console.log(this.state.data)
           })
           .catch(function (ex) {
@@ -27,14 +27,13 @@ export default class Menu extends React.Component {
     render() {
         return (
             <div>
-                <h1>Menu</h1>
+                <h1>Products</h1>
                  {
-                    this.state.categories.map(categories =>
+                    this.state.products.map(products =>
                         <div className="column">
                         <Card
-                        id={categories.id}
-                        imageUrl={categories.image}
-                        title={categories.name}
+                        imageUrl={products.image}
+                        title={products.name}
                         />
                         </div>
                     )
