@@ -1,0 +1,23 @@
+  /* Style the counter cards */
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 50px;
+    text-align: center;
+    background-color: #f1f1f1;
+  }
+
+  .cardimg {
+    height: 150px;
+    width: 100%;
+  }
+
+  .button {
+    width: 40%;
+    height: 30px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+  }
+
+  h6 {
+      margin-top: 10px;
+  }
