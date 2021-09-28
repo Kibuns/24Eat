@@ -1,44 +1,27 @@
 import React from "react";
 import "../Style/menu.css";
-import Card from "../Components/Card";
+import { useParams, withRouter } from "react-router-dom";
+import useFetch from "../ApiService/useFetch";
+import { render } from "@testing-library/react";
 
-import APIService from '../ApiService/ProductAPIService'
+const Product = () => {
 
-export default class Product extends React.Component {
+    const { id } = useParams();
+    const { data, error, isPending } = useFetch("http://localhost:8080/products/category/" + id);
 
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-             products: []
-        }
-    }
-    
-    componentDidMount({id}){
-        APIService.getProductsByCategoryId({id}).then((data) => {
-            this.setState({ products: data })
-            console.log(this.state.data)
-          })
-          .catch(function (ex) {
-              console.log('Response parsing failed. Error: ', ex);
-          });;
-    }
-
-    render() {
         return (
             <div>
-                <h1>Products</h1>
-                 {
-                    this.state.products.map(products =>
-                        <div className="column">
-                        <Card
-                        imageUrl={products.image}
-                        title={products.name}
-                        />
-                        </div>
-                    )
-                 }
+                <p>{id}</p>
+                <p>{data.name}</p>
             </div>
         )
-    }
 }
+
+export default Product;
+
+{/* { isPending && <div>Loading...</div>}
+                {error && <div>{ error } </div>}
+                <h1>Category {id}</h1>
+                {data && (
+                    <h1>{data.name}</h1>
+                )} */}

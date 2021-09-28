@@ -28,8 +28,9 @@ class ProductAPIService {
         .then(res => res.json());        
     }
 
-    getProductsByCategoryId({id}){
-        return fetch(CATEGORIESBYID_REST_API + {id},{ 
+    getProductsByCategoryId(){
+
+        return fetch(CATEGORIESBYID_REST_API ,{ 
             method: 'get',
                 headers: {
                 'Accept': 'application/json, text/plain, */*',

@@ -1,10 +1,10 @@
 import React from "react";
 import "../Style/menu.css";
 import Card from "../Components/Card";
-
 import APIService from '../ApiService/ProductAPIService'
 
-export default class Menu extends React.Component {
+
+export default class Category extends React.Component {
 
     constructor(props) {
         super(props)
@@ -15,7 +15,7 @@ export default class Menu extends React.Component {
     }
     
     componentDidMount(){
-        APIService.getProducts().then((data) => {
+        APIService.getCategories().then((data) => {
             this.setState({ categories: data })
             console.log(this.state.data)
           })
