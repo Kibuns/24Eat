@@ -2,26 +2,21 @@ import React from "react";
 import "../Style/menu.css";
 import { useParams, withRouter } from "react-router-dom";
 import useFetch from "../ApiService/useFetch";
-import { render } from "@testing-library/react";
+import ProductList from "../Components/ProductList";
 
 const Product = () => {
 
     const { id } = useParams();
-    const { data, error, isPending } = useFetch("http://localhost:8080/products/category/" + id);
+    const { data: products, error, isPending } = useFetch("http://localhost:8080/products/category/" + id);
 
         return (
             <div>
                 <p>{id}</p>
-                <p>{data.name}</p>
+                { error && <div>{ error }</div> }
+                { isPending && <div>Loading...</div> }
+                { products && <ProductList products={products} /> }
             </div>
         )
 }
 
 export default Product;
-
-{/* { isPending && <div>Loading...</div>}
-                {error && <div>{ error } </div>}
-                <h1>Category {id}</h1>
-                {data && (
-                    <h1>{data.name}</h1>
-                )} */}
