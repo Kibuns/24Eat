@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import {Card, CardContent, CardActionArea, Typography, CardMedia} from '@mui/material';
 import Col from 'react-bootstrap/Col'
-import HeaderBar from "./HeaderBar";
-
 
 function CategoryCard ({category}) {
     return (

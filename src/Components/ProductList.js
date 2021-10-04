@@ -5,16 +5,21 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Container } from 'reactstrap';
-import HeaderBar from "./HeaderBar"
+import { useHistory } from "react-router-dom";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import Col from 'react-bootstrap/Col'
+
 
 
 const ProductList = ({ products }) => {
 
+    let history = useHistory();
+
   return (
-    <div>  
-      <HeaderBar />
-      <h1>Products</h1>    
+    <div>   
+    <Col md={1}>
+        <ArrowBackIosIcon fontSize="large" onClick={() => history.goBack()}/>
+    </Col>
       {products.map(product => (
         <div className="column">
         <Card sx={{ maxWidth: 345 }}>
