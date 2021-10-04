@@ -17,16 +17,18 @@ const ProductList = ({ products }) => {
 
   return (
     <div>   
-    <Col md={1}>
+    <Col xs sm md={1}>
         <ArrowBackIosIcon fontSize="large" onClick={() => history.goBack()}/>
     </Col>
+    <Col xs sm md="auto"/>
+
       {products.map(product => (
         <div className="column">
       <Link style={{ textDecoration: 'none' }} to={`/product/${product.id}`}>
         <Card sx={{ maxWidth: 345 }}>
         <CardMedia
           component="img"
-          height="200px"
+          height="140px"
           image={product.image}
         />
         <CardContent>

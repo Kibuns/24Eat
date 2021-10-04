@@ -1,9 +1,8 @@
 import React from "react";
 import APIService from '../ApiService/ProductAPIService'
 import CategoryCard from "../Components/CategoryCard";
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
 import HeaderBar from "../Components/HeaderBar";
+import { Grid } from '@mui/material';
 
 export default class Category extends React.Component {
 
@@ -30,15 +29,13 @@ export default class Category extends React.Component {
             <div>
                 <HeaderBar/>
                 <h1>Menu</h1>
-                <Container>
-                <Row>
+                <Grid container spacing={2}>
                  {
                     this.state.categories.map(category =>
                         <CategoryCard category={category}/>
                     )
                  }
-            </Row>
-            </Container>
+                 </Grid>
             </div>
         )
     }
