@@ -1,7 +1,8 @@
 import React from "react";
-import "../Style/menu.css";
-import Card from "../Components/Card";
 import APIService from '../ApiService/ProductAPIService'
+import CategoryCard from "../Components/CategoryCard";
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 
 
 export default class Category extends React.Component {
@@ -28,17 +29,15 @@ export default class Category extends React.Component {
         return (
             <div>
                 <h1>Menu</h1>
+                <Container>
+                <Row>
                  {
-                    this.state.categories.map(categories =>
-                        <div className="column">
-                        <Card
-                        id={categories.id}
-                        imageUrl={categories.image}
-                        title={categories.name}
-                        />
-                        </div>
+                    this.state.categories.map(category =>
+                        <CategoryCard category={category}/>
                     )
                  }
+            </Row>
+            </Container>
             </div>
         )
     }
