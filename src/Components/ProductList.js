@@ -7,14 +7,19 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import HeaderBar from "./HeaderBar"
 import { Link } from 'react-router-dom';
-
+import { useHistory } from "react-router-dom";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import Col from 'react-bootstrap/Col';
 
 const ProductList = ({ products }) => {
 
+    let history = useHistory();
+
   return (
-    <div>  
-      <HeaderBar />
-      <h1>Products</h1>    
+    <div>   
+    <Col md={1}>
+        <ArrowBackIosIcon fontSize="large" onClick={() => history.goBack()}/>
+    </Col>
       {products.map(product => (
         <div className="column">
       <Link style={{ textDecoration: 'none' }} to={`/product/${product.id}`}>
