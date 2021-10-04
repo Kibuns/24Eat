@@ -1,13 +1,24 @@
 import { Container } from 'reactstrap';
 import {Nav, Navbar} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
 const HeaderBar = () => {
     return (
       <Navbar bg="dark" variant="dark">
         <Container>
-        <Navbar.Brand href="/">Home</Navbar.Brand>
+        <Link style={{ textDecoration: 'none' }} to={`/`}>
+          <Navbar.Brand>Home</Navbar.Brand>
+        </Link>        
         <Nav className="me-auto">
-          <Nav.Link href="/category">Menu</Nav.Link>
+          <Link style={{ textDecoration: 'none', color: 'white' }} to={`/category`}>
+            Menu
+          </Link>
+        </Nav>
+        <Nav>
+          <Link style={{ textDecoration: 'none', color: 'white' }} to={`/basket`}>
+            <ShoppingBasketIcon/>
+          </Link>
         </Nav>
         </Container>
     </Navbar>
