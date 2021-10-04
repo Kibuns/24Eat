@@ -5,8 +5,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Container } from 'reactstrap';
 import HeaderBar from "./HeaderBar"
+import { Link } from 'react-router-dom';
 
 
 const ProductList = ({ products }) => {
@@ -17,6 +17,7 @@ const ProductList = ({ products }) => {
       <h1>Products</h1>    
       {products.map(product => (
         <div className="column">
+      <Link style={{ textDecoration: 'none' }} to={`/product/${product.id}`}>
         <Card sx={{ maxWidth: 345 }}>
         <CardMedia
           component="img"
@@ -31,6 +32,7 @@ const ProductList = ({ products }) => {
         <CardActions>
         </CardActions>
       </Card>
+      </Link>
       </div>
       ))}
     </div>
