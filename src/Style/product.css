@@ -5,6 +5,19 @@
     margin-bottom: 20px;
   }
 
-.Test {
-  background-color: red;
+.button {
+  text-align: center;
+}
+
+.image {
+  height: 300px;
+  width: 300px;
+}
+
+.info {
+  margin-top: 30px;
+}
+
+.description {
+  margin-bottom: 30px;
 }
