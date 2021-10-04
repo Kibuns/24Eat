@@ -11,7 +11,6 @@ const Product = () => {
 
         return (
             <div>
-                <p>{id}</p>
                 { error && <div>{ error }</div> }
                 { isPending && <div>Loading...</div> }
                 { products && <ProductList products={products} /> }
