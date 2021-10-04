@@ -5,6 +5,7 @@ import Product from "../Pages/Product";
 import { Container } from 'reactstrap';
 import {Nav, Navbar} from 'react-bootstrap';
 import Category from "./Category";
+import HeaderBar from "../Components/HeaderBar";
 
 function App() {
   return (
@@ -27,14 +28,7 @@ function App() {
 const Home = () => (
 
   <div>
-     <Navbar bg="dark" variant="dark">
-        <Container>
-        <Navbar.Brand href="/">Home</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="/category">Menu</Nav.Link>
-        </Nav>
-        </Container>
-    </Navbar>
+     <HeaderBar/>
 
     <h1>Home</h1>
 

@@ -3,7 +3,7 @@ import APIService from '../ApiService/ProductAPIService'
 import CategoryCard from "../Components/CategoryCard";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-
+import HeaderBar from "../Components/HeaderBar";
 
 export default class Category extends React.Component {
 
@@ -28,6 +28,7 @@ export default class Category extends React.Component {
     render() {
         return (
             <div>
+                <HeaderBar/>
                 <h1>Menu</h1>
                 <Container>
                 <Row>
