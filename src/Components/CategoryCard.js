@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import {Card, CardContent, CardActionArea, Typography, CardMedia} from '@mui/material';
-import Col from 'react-bootstrap/Col'
+import {Card, CardContent, CardActionArea, Typography, CardMedia, Grid} from '@mui/material';
 
 function CategoryCard ({category}) {
     return (
-        <Col md={4} sm={4} xs={4}>
+        <Grid item md={4} sm={4} xs={4}>
         <div key={category.id} >
             <Link style={{ textDecoration: 'none' }} to={`/category/${category.id}`}>
                 <Card sx={{ }}>
@@ -24,7 +23,7 @@ function CategoryCard ({category}) {
                 </Card>
             </Link>
         </div>
-        </Col>
+        </Grid>
     )
 }
 
