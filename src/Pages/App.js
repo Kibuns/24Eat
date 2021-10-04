@@ -2,9 +2,9 @@ import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import "../Style/App.css";
 import Product from "../Pages/Product";
-import { Container } from 'reactstrap';
-import {Nav, Navbar} from 'react-bootstrap';
 import Category from "./Category";
+import HeaderBar from "../Components/HeaderBar";
+import Details from "../Pages/Details";
 
 function App() {
   return (
@@ -15,6 +15,9 @@ function App() {
               <Route exact path='/category' component={Category} />
               <Route path='/category/:id'>
                 <Product/>
+              </Route>
+              <Route path='/product/:id'>
+                <Details/>
               </Route>
           </Switch>
         </div>
@@ -27,14 +30,7 @@ function App() {
 const Home = () => (
 
   <div>
-     <Navbar bg="dark" variant="dark">
-        <Container>
-        <Navbar.Brand href="/">Home</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="/category">Menu</Nav.Link>
-        </Nav>
-        </Container>
-    </Navbar>
+     <HeaderBar/>
 
     <h1>Home</h1>
 
