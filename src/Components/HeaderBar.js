@@ -1,34 +1,37 @@
-import { Container } from 'reactstrap';
-import {Nav, Navbar} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import TableNr from './TableNr';
+import { Container } from "reactstrap";
+import { Nav, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import TableNr from "./TableNr";
 
 const HeaderBar = () => {
-    return (
-      <Navbar bg="dark" variant="dark">
-        <Container>
-        <Nav style={{color:'white'}}>
+  return (
+    <Navbar bg="dark" variant="dark">
+      <Container>
+        <Nav className="me-auto" style={{ color: "white" }}>
+          <TableNr />
+        </Nav>
 
-            <TableNr/>
-
-          </Nav>
-
-          <Nav className="me-auto">
-          <Link style={{ textDecoration:'none', color: 'white' }} to={`/category`}>
+        <Nav className="me-auto">
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            to={`/category`}
+          >
             Menu
           </Link>
         </Nav>
 
         <Nav>
-          <Link style={{ textDecoration: 'none', color: 'white' }} to={`/basket`}>
-            <ShoppingBasketIcon/>
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            to={`/basket`}
+          >
+            <ShoppingBasketIcon />
           </Link>
         </Nav>
-
-        </Container>
+      </Container>
     </Navbar>
-    );
-}
+  );
+};
 
 export default HeaderBar;
