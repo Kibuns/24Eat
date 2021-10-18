@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import "../Style/App.css";
 import Product from "../Pages/Product";
 import Category from "./Category";
+import Basket from "./Basket";
 import HeaderBar from "../Components/HeaderBar";
 import Details from "../Pages/Details";
 
@@ -13,6 +14,7 @@ function App() {
           <Switch>
               <Route exact path='/' component={Home} />
               <Route exact path='/category' component={Category} />
+              <Route exact path='/basket' component={Basket} />
               <Route path='/category/:id'>
                 <Product/>
               </Route>
