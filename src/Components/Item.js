@@ -1,4 +1,10 @@
 import React from 'react'
+import { ListItem, ListItemText, ListItemAvatar, Avatar, IconButton } from '@mui/material';
+
+import ImageIcon from '@mui/icons-material/Image';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function Item({item, removeItem, addToBasket, removeItemOne}) {
     function handleItemClickAdd(e) {
@@ -10,17 +16,31 @@ export default function Item({item, removeItem, addToBasket, removeItemOne}) {
     function handleItemClickRemoveOne(e) {        
         removeItemOne(item)
     }
+    
+    var randomNumber = Math.random() * (100 - 0) + 0;
+    randomNumber = Math.floor(randomNumber);
     return (
-        <tr>
-            <td>placeholder img</td>
-            <td>{item.name}</td>
-            <td>{item.price * item.quantity}</td>
-            <td>{item.quantity}</td>
-            <td>            
-                <button onClick = {handleItemClickAdd}>+</button>
-                <button onClick = {handleItemClickRemoveOne}>-</button>
-                <button onClick = {handleItemClickRemove}>remove</button>
-            </td>
-        </tr>
-    )
+        <ListItem        
+            secondaryAction={
+                <IconButton edge="end" aria-label="delete">
+                    <DeleteIcon onClick = {handleItemClickRemove} />
+                </IconButton>
+            }
+        >
+            <ListItemAvatar>
+            {/* <Avatar src="https://picsum.photos/200"/> */}
+            <Avatar src={"https://picsum.photos/id/" + randomNumber + "/200/300"}/>
+            </ListItemAvatar>
+                <ListItemText primary={item.name} secondary={"€" + item.price * item.quantity} />
+
+            <IconButton edge="start" aria-label="modify">
+                <RemoveIcon onClick = {handleItemClickRemoveOne}/>                  
+                {item.quantity}
+                <AddIcon variant="contained" onClick = {handleItemClickAdd}/>       
+            </IconButton>
+
+            
+                
+        </ListItem>
+    );
 }

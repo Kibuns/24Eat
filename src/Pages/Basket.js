@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import Basketlist from '../Components/Basketlist'
 import HeaderBar from "../Components/HeaderBar";
 import update from 'immutability-helper'
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
 
 const LOCAL_STORAGE_KEY = 'Basket.items'
 
@@ -78,8 +80,10 @@ function Basket() {
   return (
    <>
         <div><HeaderBar/></div>
-        <div>{items.length} items in basket with total cost being: {totalPrice}$</div>
-        <Basketlist items = {items} removeItem = {removeItem} addToBasket = {addToBasket} removeItemOne={removeItemOne}/>
+
+        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+          <Basketlist items = {items} removeItem = {removeItem} addToBasket = {addToBasket} removeItemOne={removeItemOne}/></List>
+
    </>
   );
 }
