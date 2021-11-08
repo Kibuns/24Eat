@@ -2,7 +2,12 @@ import React from 'react';
 import "../Style/product.css";
 import { Button, CardActionArea, CardActions } from '@mui/material';
 
-const ProductDetails = ({ details }) => {
+const ProductDetails = ({ details, Test }) => {
+
+  function handleClickAdd(e) {
+    console.log(details)
+    Test(details)
+  }
 
   return (
     <div>
@@ -13,7 +18,7 @@ const ProductDetails = ({ details }) => {
                 <h2>{details.name}</h2>
                 <h6>${details.price}</h6>
                 <h6 className="description">{details.description}</h6>
-                <Button variant="outlined">Add to card</Button>
+                <Button variant="outlined" onClick = {handleClickAdd}>Add to card</Button>
             </div>
         </div>
     </div>

@@ -6,7 +6,7 @@ import ProductDetails from "../Components/ProductDetail";
 import HeaderBar from "../Components/HeaderBar";
 
 
-const Details = () => {
+const Details = ({Test}) => {
 
     const { id } = useParams();
     const { data: details, error, isPending } = useFetch("http://localhost:8080/products/" + id);
@@ -16,7 +16,7 @@ const Details = () => {
                 <HeaderBar />
                 { error && <div>{ error }</div> }
                 { isPending && <div>Loading...</div> }
-                { details && <ProductDetails details={details} /> }
+                { details && <ProductDetails details={details} Test={Test} /> }
             </div>
         )
 }

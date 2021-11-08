@@ -2,24 +2,23 @@ import React, {useState, useEffect} from 'react';
 import Basketlist from '../Components/Basketlist'
 import HeaderBar from "../Components/HeaderBar";
 import update from 'immutability-helper'
-import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 
 const LOCAL_STORAGE_KEY = 'Basket.items'
 
-function Basket() {
+function Basket(extProduct) {
   const [items, setItems] = useState([])
-  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() =>{
     const storedItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
     if(storedItems) setItems(storedItems)
+    if(extProduct) extProduct.quantity = 0
+    addToBasket(extProduct)
   }, [])
 
   useEffect(() =>{
     console.log('list changed');
     console.log(items);
-    calcTotalPrice();
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
   }, [items])
 
@@ -68,13 +67,6 @@ function Basket() {
   }
   function removeItemOne(product) {
     updateArrayElementByProduct(items, product, -1)
-  }
-
-  function calcTotalPrice(){
-      setTotalPrice(items.reduce((sum, i) =>(
-        sum += i.quantity * i.price
-    ), 0))
-    console.log(totalPrice)
   }
 
   return (
