@@ -3,17 +3,17 @@ import Basketlist from '../Components/Basketlist'
 import HeaderBar from "../Components/HeaderBar";
 import update from 'immutability-helper'
 import List from '@mui/material/List';
+import { useProduct } from '../Components/ProductContext';
 
 const LOCAL_STORAGE_KEY = 'Basket.items'
 
-function Basket(extProduct) {
+function Basket() {
   const [items, setItems] = useState([])
+  const extProduct = useProduct()
 
   useEffect(() =>{
     const storedItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
     if(storedItems) setItems(storedItems)
-    if(extProduct) extProduct.quantity = 0
-    addToBasket(extProduct)
   }, [])
 
   useEffect(() =>{
@@ -21,6 +21,11 @@ function Basket(extProduct) {
     console.log(items);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
   }, [items])
+
+  useEffect(() =>{
+    addToBasket(extProduct)
+    console.log("adding ext product")
+  }, [extProduct])
 
   function updateArrayElementByProduct(array, product, value) {
     var foundItem = false;
@@ -58,9 +63,9 @@ function Basket(extProduct) {
   }
 
   function addToBasket(product) {
+    if(product !== undefined)
     updateArrayElementByProduct(items, product, 1)
   }
-
   function removeItem(productId) {
     const newItems = items.filter(item => item.productId !== productId)
     setItems(newItems)

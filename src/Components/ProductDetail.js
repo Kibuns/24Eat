@@ -1,13 +1,12 @@
 import React from 'react';
 import "../Style/product.css";
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Button } from '@mui/material';
+import { useProductUpdate } from './ProductContext';
 
-const ProductDetails = ({ details, Test }) => {
+const ProductDetails = ({ details }) => {
 
-  function handleClickAdd(e) {
-    console.log(details)
-    Test(details)
-  }
+  const updateProduct = useProductUpdate({details})
+
 
   return (
     <div>
@@ -18,10 +17,11 @@ const ProductDetails = ({ details, Test }) => {
                 <h2>{details.name}</h2>
                 <h6>${details.price}</h6>
                 <h6 className="description">{details.description}</h6>
-                <Button variant="outlined" onClick = {handleClickAdd}>Add to card</Button>
+                <Button variant="outlined" onClick = {updateProduct}>Add to card</Button>
             </div>
         </div>
     </div>
-  )}
+  )
+}
 
 export default ProductDetails;

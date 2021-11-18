@@ -1,4 +1,4 @@
-import React, {useState, useEffect}from "react";
+import React, {useState, useEffect} from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import "../Style/App.css";
 import Product from "../Pages/Product";
@@ -6,36 +6,20 @@ import Category from "./Category";
 import Basket from "./Basket";
 import HeaderBar from "../Components/HeaderBar";
 import Details from "../Pages/Details";
+import {ProductProvider} from '../Components/ProductContext'
 
 function App() {
-  const [extProduct, setExtProduct] = useState({})
-
-  function Test(item){
-    if(extProduct) setExtProduct(item)
-    console.log(extProduct)
-    return console.log("product set")
-  }
-
-  
-  // function Test(product){
-
-  //   return console.log("test end")
-  // }
-
   return (
     <Router>
         <div className="App">
           <Switch>
+            <ProductProvider>
               <Route exact path='/' component={Home} />
               <Route exact path='/category' component={Category} />
               <Route exact path='/basket' component={Basket} />
-              <Route exact path='/basket' render={ () => <Basket extProduct = {extProduct}/>}/>
-              <Route path='/category/:id'>
-                <Product/>
-              </Route>
-              <Route path='/product/:id'>
-                <Details Test={Test}/>
-              </Route>
+              <Route path='/category/:id' component={Product}/>
+              <Route path='/product/:id' component={Details}/>
+            </ProductProvider>
           </Switch>
         </div>
       </Router>
