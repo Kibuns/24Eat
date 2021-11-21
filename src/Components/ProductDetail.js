@@ -5,7 +5,7 @@ import { useProductUpdate } from './ProductContext';
 
 const ProductDetails = ({ details }) => {
 
-  const updateProduct = useProductUpdate({details})
+  const updateProduct = useProductUpdate(details)
 
 
   return (
@@ -17,7 +17,7 @@ const ProductDetails = ({ details }) => {
                 <h2>{details.name}</h2>
                 <h6>${details.price}</h6>
                 <h6 className="description">{details.description}</h6>
-                <Button variant="outlined" onClick = {updateProduct}>Add to card</Button>
+                <Button variant="outlined" onClick = {() => updateProduct(details)}>Add to card</Button>
             </div>
         </div>
     </div>

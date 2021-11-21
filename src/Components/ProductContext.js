@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState } from 'react'
 
 const ProductContext = React.createContext(null)
 const ProductUpdateContext = React.createContext()
@@ -14,9 +14,10 @@ export function useProductUpdate(){
 export function ProductProvider({children}){
     const [extProduct, setExtProduct] = useState()
 
-    function updateProduct({item}){
+    function updateProduct(item){
         console.log(item)
         const modifiedProduct = {productId: item.id, name: item.name, price: item.price}
+        console.log(modifiedProduct)
         setExtProduct(modifiedProduct)
         console.log(extProduct)
         return console.log("product set")

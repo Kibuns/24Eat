@@ -7,6 +7,10 @@ import { useProduct } from '../Components/ProductContext';
 
 const LOCAL_STORAGE_KEY = 'Basket.items'
 
+//TODO rerender basket on productcontext
+//TODO rewrite updatearrayelement to do proper checks with extproduct
+//TODO stop readding of extproduct on rerender of basket
+
 function Basket() {
   const [items, setItems] = useState([])
   const extProduct = useProduct()
@@ -23,8 +27,8 @@ function Basket() {
   }, [items])
 
   useEffect(() =>{
-    addToBasket(extProduct)
-    console.log("adding ext product")
+   addToBasket(extProduct)
+  console.log("adding ext product")
   }, [extProduct])
 
   function updateArrayElementByProduct(array, product, value) {
@@ -33,26 +37,30 @@ function Basket() {
     var deleted = false;
     
     array.find((element) => {
-      if (element.productId === product.productId) {
-        element.quantity += value;
-
-        if (element.quantity < 1) {
-          console.log('im here');
-          removeItem(element.productId)
-          deleted = true
-        }else{
-          console.log('im here too');
-          var newItems = update(items, {
-            $splice: [[position, 1, element]]
-          });
-  
-          setItems(newItems);
-          foundItem = true;
-        }
-      }else {
-        position++
-      }
+        console.log(element.productId)
+        console.log(product.productId)
+    
+        if (element.productId === product.productId) {
+          element.quantity += value;
+    
+          if (element.quantity < 1) {
+            console.log('im here');
+            removeItem(element.productId)
+              deleted = true
+            }else{
+              console.log('im here too');
+              var newItems = update(items, {
+                $splice: [[position, 1, element]]
+              });
+      
+              setItems(newItems);
+              foundItem = true;
+            }
+          }else {
+            position++
+          }
     })
+    
     if (foundItem === false && deleted === false) {
       console.log('item found in list: '+foundItem);
       product.quantity = 1;
