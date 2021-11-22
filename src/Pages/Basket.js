@@ -31,55 +31,73 @@ function Basket() {
   console.log("adding ext product")
   }, [extProduct])
 
-  function updateArrayElementByProduct(array, product, value) {
-    var foundItem = false;
-    var position = 0;
-    var deleted = false;
+  // function updateArrayElementByProduct(array, product, value) {
+  //   var foundItem = false;
+  //   var position = 0;
+  //   var deleted = false;
     
-    array.find((element) => {
-        console.log(element.productId)
-        console.log(product.productId)
+  //   array.find((element) => {
+  //       console.log(element.productId)
+  //       console.log(product.productId)
     
-        if (element.productId === product.productId) {
-          element.quantity += value;
+  //       if (element.productId === product.productId) {
+  //         element.quantity += value;
     
-          if (element.quantity < 1) {
-            console.log('im here');
-            removeItem(element.productId)
-              deleted = true
-            }else{
-              console.log('im here too');
-              var newItems = update(items, {
-                $splice: [[position, 1, element]]
-              });
+  //         if (element.quantity < 1) {
+  //           console.log('im here');
+  //           removeItem(element.productId)
+  //             deleted = true
+  //           }else{
+  //             console.log('im here too');
+  //             var newItems = update(items, {
+  //               $splice: [[position, 1, element]]
+  //             });
       
-              setItems(newItems);
-              foundItem = true;
-            }
-          }else {
-            position++
-          }
-    })
+  //             setItems(newItems);
+  //             foundItem = true;
+  //           }
+  //         }else {
+  //           position++
+  //         }
+  //   })
     
-    if (foundItem === false && deleted === false) {
-      console.log('item found in list: '+foundItem);
-      product.quantity = 1;
-      setItems(prevItems => {
-        return [...prevItems, product]
-      })
-    }
+  //   if (foundItem === false && deleted === false) {
+  //     console.log('item found in list: '+foundItem);
+  //     product.quantity = 1;
+  //     setItems(prevItems => {
+  //       return [...prevItems, product]
+  //     })
+  //   }
+  // }
+
+  function CartController(product, value) {
+    //if the product already exists, increase/decrease quantity
+    if(items.some(element => element.productId != product.productId)) return
+      items.element.quantity += value
+    
   }
 
   function addToBasket(product) {
-    if(product !== undefined)
-    updateArrayElementByProduct(items, product, 1)
+    if(product === undefined) return
+    //if productid is found in array, +1 the quantity. else add product
+    if(items.some(element => element.productId === product.productId)){
+      items.element.quantity += 1
+    } else{
+      items.push(product)
+    }
   }
+
+  function removeItemOne(product) {
+    if(product === undefined) return
+    //if productid is found in array, check if value is 1 if >1, -1
+    if(items.some(element => element.productId === product.productId)){
+      items.element.quantity += 1
+    }
+  }
+
   function removeItem(productId) {
     const newItems = items.filter(item => item.productId !== productId)
     setItems(newItems)
-  }
-  function removeItemOne(product) {
-    updateArrayElementByProduct(items, product, -1)
   }
 
   return (
