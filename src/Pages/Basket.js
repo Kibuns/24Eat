@@ -1,112 +1,68 @@
 import React, {useState, useEffect} from 'react';
 import Basketlist from '../Components/Basketlist'
 import HeaderBar from "../Components/HeaderBar";
-import update from 'immutability-helper'
 import List from '@mui/material/List';
-import { useProduct } from '../Components/ProductContext';
+import { useProduct, useProductUpdate } from '../Components/ProductContext';
 
 const LOCAL_STORAGE_KEY = 'Basket.items'
 
-//TODO rerender basket on productcontext
-//TODO rewrite updatearrayelement to do proper checks with extproduct
-//TODO stop readding of extproduct on rerender of basket
+//TODO make basket rerender when productcontext changes from outside basket
 
 function Basket() {
   const [items, setItems] = useState([])
+  const [Initialised, setInitialised] = useState(false)
   const extProduct = useProduct()
+  const setExtProduct = useProductUpdate()
 
   useEffect(() =>{
     const storedItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
     if(storedItems) setItems(storedItems)
+    setInitialised(true)
   }, [])
 
   useEffect(() =>{
-    console.log('list changed');
-    console.log(items);
+    console.log(items)
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
   }, [items])
 
   useEffect(() =>{
-   addToBasket(extProduct)
-  console.log("adding ext product")
-  }, [extProduct])
-
-  // function updateArrayElementByProduct(array, product, value) {
-  //   var foundItem = false;
-  //   var position = 0;
-  //   var deleted = false;
-    
-  //   array.find((element) => {
-  //       console.log(element.productId)
-  //       console.log(product.productId)
-    
-  //       if (element.productId === product.productId) {
-  //         element.quantity += value;
-    
-  //         if (element.quantity < 1) {
-  //           console.log('im here');
-  //           removeItem(element.productId)
-  //             deleted = true
-  //           }else{
-  //             console.log('im here too');
-  //             var newItems = update(items, {
-  //               $splice: [[position, 1, element]]
-  //             });
-      
-  //             setItems(newItems);
-  //             foundItem = true;
-  //           }
-  //         }else {
-  //           position++
-  //         }
-  //   })
-    
-  //   if (foundItem === false && deleted === false) {
-  //     console.log('item found in list: '+foundItem);
-  //     product.quantity = 1;
-  //     setItems(prevItems => {
-  //       return [...prevItems, product]
-  //     })
-  //   }
-  // }
-
-  function CartController(product, value) {
-    //if the product already exists, increase/decrease quantity
-    if(items.some(element => element.productId != product.productId)) return
-      items.element.quantity += value
-    
-  }
+    if(Initialised) addToBasket(extProduct)
+    // eslint-disable-next-line
+  }, [Initialised])
 
   function addToBasket(product) {
-    if(product === undefined) return
-    //if productid is found in array, +1 the quantity. else add product
-    if(items.some(element => element.productId === product.productId)){
-      items.element.quantity += 1
-    } else{
-      items.push(product)
+    setExtProduct(null)
+    if(product === null || undefined) return console.log("Product undefined")
+    const foundItem = items.find(element => element.productId === product.productId)
+    if(foundItem){
+      setItems(items.map(element => element.productId === product.productId ? {...foundItem, quantity: foundItem.quantity +1} : element))
+      console.log("Incrementing item by 1")
+    }
+    else{
+      setItems([...items, {...product, quantity: 1}])
+      console.log("Item not found, adding to list")
     }
   }
-
+  
   function removeItemOne(product) {
-    if(product === undefined) return
-    //if productid is found in array, check if value is 1 if >1, -1
-    if(items.some(element => element.productId === product.productId)){
-      items.element.quantity += 1
-    }
+    if(product === null || undefined) return console.log("Product undefined")
+    const foundItem = items.find(element => element.productId === product.productId)
+    if(foundItem.quantity === 1) return removeItem(foundItem.productId)
+    setItems(items.map(element => element.productId === product.productId ? {...foundItem, quantity: foundItem.quantity -1} : element))
+    console.log("Item found, removing 1 from quantity")
   }
 
   function removeItem(productId) {
     const newItems = items.filter(item => item.productId !== productId)
     setItems(newItems)
+    console.log("Removing all items with productId: " + productId)
   }
 
   return (
    <>
         <div><HeaderBar/></div>
-
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
           <Basketlist items = {items} removeItem = {removeItem} addToBasket = {addToBasket} removeItemOne={removeItemOne}/></List>
-
    </>
   );
 }

@@ -16,11 +16,9 @@ export function ProductProvider({children}){
 
     function updateProduct(item){
         console.log(item)
-        const modifiedProduct = {productId: item.id, name: item.name, price: item.price}
-        console.log(modifiedProduct)
-        setExtProduct(modifiedProduct)
+        if(item === null || undefined) return setExtProduct(null)
+        setExtProduct({productId: item.id, name: item.name, price: item.price})
         console.log(extProduct)
-        return console.log("product set")
     }
 
     return (
