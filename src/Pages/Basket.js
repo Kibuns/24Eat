@@ -6,7 +6,8 @@ import { useProduct, useProductUpdate } from '../Components/ProductContext';
 
 const LOCAL_STORAGE_KEY = 'Basket.items'
 
-//TODO make basket rerender when productcontext changes from outside basket
+//TODO make basket rerender when productcontext changes from outside basket OR let productcontext pass a list
+//TODO get images from productdetail and send them with extproduct
 
 function Basket() {
   const [items, setItems] = useState([])

@@ -1,6 +1,6 @@
 import React from 'react'
 import Item from './Item'
-import { Button, ListItem, List, ListItemText, IconButton } from '@mui/material';
+import { Button, ListItem, List, ListItemText } from '@mui/material';
 
 
 export default function Basketlist({items, removeItem, addToBasket, removeItemOne}) {

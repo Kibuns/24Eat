@@ -1,7 +1,5 @@
 import React from 'react'
 import { ListItem, ListItemText, ListItemAvatar, Avatar, IconButton } from '@mui/material';
-
-import ImageIcon from '@mui/icons-material/Image';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -28,8 +26,7 @@ export default function Item({item, removeItem, addToBasket, removeItemOne}) {
             }
         >
             <ListItemAvatar>
-            {/* <Avatar src="https://picsum.photos/200"/> */}
-            <Avatar src={"https://picsum.photos/id/" + randomNumber + "/200/300"}/>
+            <Avatar src={}/>
             </ListItemAvatar>
                 <ListItemText primary={item.name} secondary={"€" + item.price * item.quantity} />
 
