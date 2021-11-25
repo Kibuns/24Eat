@@ -18,13 +18,13 @@ export default function Item({item, removeItem, addToBasket, removeItemOne}) {
     return (
         <ListItem        
             secondaryAction={
-                <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon onClick = {handleItemClickRemove} />
+                <IconButton edge="end" aria-label="delete" onClick = {handleItemClickRemove}>
+                    <DeleteIcon/>
                 </IconButton>
             }
         >
             <ListItemAvatar>
-            <Avatar src={404}/>
+            <Avatar src={item.image}/>
             </ListItemAvatar>
                 <ListItemText primary={item.name} secondary={"€" + item.price * item.quantity} />
 

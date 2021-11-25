@@ -16,7 +16,7 @@ export function ProductProvider({children}){
     function updateProduct(item){
         console.log(item)
         if(!item) return setExtProduct()
-        setExtProduct({productId: item.id, name: item.name, price: item.price})
+        setExtProduct({productId: item.id, name: item.name, price: item.price, image: item.image ? item.image : null})
         console.log(extProduct)
     }
 
