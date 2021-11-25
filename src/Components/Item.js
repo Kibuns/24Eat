@@ -15,8 +15,6 @@ export default function Item({item, removeItem, addToBasket, removeItemOne}) {
         removeItemOne(item)
     }
     
-    var randomNumber = Math.random() * (100 - 0) + 0;
-    randomNumber = Math.floor(randomNumber);
     return (
         <ListItem        
             secondaryAction={
@@ -26,7 +24,7 @@ export default function Item({item, removeItem, addToBasket, removeItemOne}) {
             }
         >
             <ListItemAvatar>
-            <Avatar src={}/>
+            <Avatar src={404}/>
             </ListItemAvatar>
                 <ListItemText primary={item.name} secondary={"€" + item.price * item.quantity} />
 

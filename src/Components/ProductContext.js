@@ -6,7 +6,6 @@ const ProductUpdateContext = React.createContext()
 export function useProduct(){
     return useContext(ProductContext)
 }
-
 export function useProductUpdate(){
     return useContext(ProductUpdateContext)
 }
@@ -16,7 +15,7 @@ export function ProductProvider({children}){
 
     function updateProduct(item){
         console.log(item)
-        if(item === null || undefined) return setExtProduct(null)
+        if(!item) return setExtProduct()
         setExtProduct({productId: item.id, name: item.name, price: item.price})
         console.log(extProduct)
     }

@@ -32,8 +32,9 @@ function Basket() {
   }, [Initialised])
 
   function addToBasket(product) {
-    setExtProduct(null)
-    if(product === null || undefined) return console.log("Product undefined")
+    console.log(product)
+    setExtProduct()
+    if(!product) return console.log("Product undefined")
     const foundItem = items.find(element => element.productId === product.productId)
     if(foundItem){
       setItems(items.map(element => element.productId === product.productId ? {...foundItem, quantity: foundItem.quantity +1} : element))
@@ -46,7 +47,7 @@ function Basket() {
   }
   
   function removeItemOne(product) {
-    if(product === null || undefined) return console.log("Product undefined")
+    if(!product) return console.log("Product undefined")
     const foundItem = items.find(element => element.productId === product.productId)
     if(foundItem.quantity === 1) return removeItem(foundItem.productId)
     setItems(items.map(element => element.productId === product.productId ? {...foundItem, quantity: foundItem.quantity -1} : element))
