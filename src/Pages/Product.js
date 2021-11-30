@@ -5,7 +5,6 @@ import useFetch from "../ApiService/useFetch";
 import ProductList from "../Components/ProductList";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import HeaderBar from "../Components/HeaderBar"
 
 
 const Product = () => {
@@ -15,7 +14,6 @@ const Product = () => {
 
         return (
             <div>
-                <HeaderBar />
                 <Container>
                     <Row>
                         <h1>Products</h1>   
