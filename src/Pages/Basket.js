@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Basketlist from '../Components/Basketlist'
 import HeaderBar from "../Components/HeaderBar";
 import List from '@mui/material/List';
-import { useProduct, useProductUpdate } from '../Components/ProductContext';
+import { useProduct, useProductClear } from '../Components/ProductContext';
 
 const LOCAL_STORAGE_KEY = 'Basket.items'
 
@@ -12,8 +12,8 @@ const LOCAL_STORAGE_KEY = 'Basket.items'
 function Basket() {
   const [items, setItems] = useState([])
   const [Initialised, setInitialised] = useState(false)
-  const extProduct = useProduct()
-  const setExtProduct = useProductUpdate()
+  const extProducts = useProduct()
+  const clearExtProduct = useProductClear()
 
   useEffect(() =>{
     const storedItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
@@ -27,13 +27,18 @@ function Basket() {
   }, [items])
 
   useEffect(() =>{
-    if(Initialised) addToBasket(extProduct)
+    if(Initialised){
+      console.log(extProducts.length)
+      for(const element of extProducts){
+        addToBasket(element)
+      }
+      clearExtProduct()
+    } 
     // eslint-disable-next-line
   }, [Initialised])
 
   function addToBasket(product) {
     console.log(product)
-    setExtProduct()
     if(!product) return console.log("Product undefined")
     const foundItem = items.find(element => element.productId === product.productId)
     if(foundItem){
