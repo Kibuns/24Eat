@@ -1,7 +1,6 @@
 import React from "react";
 import APIService from '../ApiService/ProductAPIService'
 import CategoryCard from "../Components/CategoryCard";
-import HeaderBar from "../Components/HeaderBar";
 import { Grid } from '@mui/material';
 
 export default class Category extends React.Component {
@@ -27,7 +26,6 @@ export default class Category extends React.Component {
     render() {
         return (
             <div>
-                <HeaderBar/>
                 <h1>Menu</h1>
                 <Grid container spacing={2}>
                  {
