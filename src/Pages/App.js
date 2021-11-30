@@ -6,7 +6,6 @@ import Category from "./Category";
 import Basket from "./Basket";
 import HeaderBar from "../Components/HeaderBar";
 import Details from "../Pages/Details";
-import {ProductProvider} from '../Components/ProductContext'
 
 function App() {
   const [items, setItems] = useState([])
@@ -57,13 +56,11 @@ function App() {
         <div className="App">
         <HeaderBar/>
           <Switch>
-            <ProductProvider>
               <Route exact path='/' component={Home} />
               <Route exact path='/category' component={Category} />
               <Route exact path='/basket' render={() => (<Basket addToBasket={addToBasket} items={items} removeItemOne={removeItemOne} removeItem={removeItem}/>)}/>
               <Route path='/category/:id' component={Product}/>
               <Route path='/product/:id' render={() => (<Details addToBasket={addToBasket}/>)}/>
-            </ProductProvider>
           </Switch>
         </div>
       </Router>
