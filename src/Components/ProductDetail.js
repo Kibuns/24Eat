@@ -21,7 +21,7 @@ const ProductDetails = ({ details, addToBasket }) => {
             <div className="info">
                 <h2>{details.name}</h2>
                 <h6>${details.price}</h6>
-                <h6 className="description">{details.description}</h6>
+                <h6 className="description"> {details.description} <br/> {details.allergies} </h6>
                 <Button variant="outlined" onClick = {handleAddClick}>Add to cart</Button>
             </div>
         </div>
