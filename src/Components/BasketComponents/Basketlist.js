@@ -3,9 +3,13 @@ import Item from './Item'
 import { Button, ListItem, List, ListItemText } from '@mui/material';
 
 
-export default function Basketlist({items, removeItem, addToBasket, removeItemOne}) {
+export default function Basketlist({items, removeItem, addToBasket, removeItemOne, clearItems}) {
     
     const BasketItems = () => {
+
+        function handleOrderClick(){
+            clearItems()
+        }
 
         var totalPrice = 0;
 
@@ -19,7 +23,7 @@ export default function Basketlist({items, removeItem, addToBasket, removeItemOn
                 })}
             <ListItem
                 secondaryAction={
-                    <Button edge="start" variant="outlined">order</Button>   
+                    <Button edge="start" variant="outlined" onClick= {handleOrderClick} >order</Button>   
                 }
             >
                 <ListItemText primary={"Total: €" + totalPrice} />
