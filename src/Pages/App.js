@@ -51,6 +51,12 @@ function App() {
     console.log("Removing all items with productId: " + productId)
   }
 
+  //function for when order button was pressed
+  function clearItems(){
+    setItems([])
+    console.log("Clearing all items")
+  }
+
   return (
     <Router>
         <div className="App">
@@ -58,7 +64,7 @@ function App() {
           <Switch>
               <Route exact path='/' component={Home} />
               <Route exact path='/category' component={Category} />
-              <Route exact path='/basket' render={() => (<Basket addToBasket={addToBasket} items={items} removeItemOne={removeItemOne} removeItem={removeItem}/>)}/>
+              <Route exact path='/basket' render={() => (<Basket addToBasket={addToBasket} items={items} removeItemOne={removeItemOne} removeItem={removeItem} clearItems={clearItems}/>)}/>
               <Route path='/category/:id' component={Product}/>
               <Route path='/product/:id' render={() => (<Details addToBasket={addToBasket}/>)}/>
           </Switch>
