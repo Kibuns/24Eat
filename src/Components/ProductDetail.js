@@ -13,6 +13,7 @@ const ProductDetails = ({ details, addToBasket }) => {
     })
   }
 
+<<<<<<< HEAD
   if  (details.inStock === false)
   {
     return (
@@ -49,6 +50,22 @@ const ProductDetails = ({ details, addToBasket }) => {
   }
 
   
+=======
+  return (
+    <div>
+        <h1>Product details</h1>
+        <div>
+            <img className="image" src={details.image} alt ="Dish"/>
+            <div className="info">
+                <h2>{details.name}</h2>
+                <h6>${details.price}</h6>
+                <h6 className="description"> {details.description} <br/> {details.allergies}<br/> {details.nutrition} </h6>
+                <Button variant="outlined" onClick = {handleAddClick}>Add to cart</Button>
+            </div>
+        </div>
+    </div>
+  )
+>>>>>>> origin/development
 }
 
 export default ProductDetails;
