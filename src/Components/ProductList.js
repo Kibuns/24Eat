@@ -25,11 +25,18 @@ const ProductList = ({ products }) => {
         <div className="column">
       <Link style={{ textDecoration: 'none' }} to={`/product/${product.id}`}>
         <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          component="img"
-          height="140px"
-          image={product.image}
-        />
+        {product.inStock
+          ?        
+          <div style={{ position: "relative" }}>      
+            <CardMedia style={{ height: "250px", paddingTop: "2%", opacity:1 }}   component="img" image={product.image} title="Product image" alt="Product image"/>
+          </div>
+          :
+          <div style={{ position: "relative" }}>      
+            <CardMedia style={{ height: "250px", paddingTop: "2%", opacity:0.3 }}   component="img" image={product.image} title="Product image" alt="Product image"/> 
+            <div style={{position: "absolute", color: "red",top: 10,left: "50%",transform: "translateX(-50%)",fontSize:25}}> Out of Stock</div>  
+          </div>
+        }
+
         <CardContent>
           <Typography gutterBottom variant="h7" component="div">
             {product.name}
