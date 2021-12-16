@@ -10,7 +10,7 @@ import Row from 'react-bootstrap/Row'
 const Product = () => {
 
     const { id } = useParams();
-    const { data: products, error, isPending } = useFetch("http://localhost:8080/products/category/" + id);
+    const { data: products, error, isPending } = useFetch("http://localhost:8080/api/products/category/" + id);
 
         return (
             <div>

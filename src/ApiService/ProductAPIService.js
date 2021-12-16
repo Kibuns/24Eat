@@ -1,7 +1,5 @@
-const PRODUCTS_REST_API = 'http://localhost:8080/categories';
-const CATEGORIESBYID_REST_API = 'http://localhost:8080/products/category/';
-const PRODUCTSBYID_REST_API = 'http://localhost:8080/products/';
-
+const PRODUCTS_REST_API = 'http://localhost:8080/api/products';
+const categoryUrl = 'http://localhost:8080/api/categories';
 
 class ProductAPIService {   
 
@@ -18,7 +16,7 @@ class ProductAPIService {
     }
 
     getCategories(){
-        return fetch(PRODUCTS_REST_API,{ 
+        return fetch(categoryUrl,{ 
             method: 'get',
                 headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -31,7 +29,7 @@ class ProductAPIService {
 
     getProductsByCategoryId(){
 
-        return fetch(CATEGORIESBYID_REST_API ,{ 
+        return fetch(categoryUrl ,{ 
             method: 'get',
                 headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -44,7 +42,7 @@ class ProductAPIService {
 
     getProductsById(){
 
-        return fetch(PRODUCTSBYID_REST_API ,{ 
+        return fetch(PRODUCTS_REST_API +'/' ,{ 
             method: 'get',
                 headers: {
                 'Accept': 'application/json, text/plain, */*',
