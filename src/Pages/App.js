@@ -62,8 +62,7 @@ function App() {
         <div className="App">
         <HeaderBar/>
           <Switch>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/category' component={Category} />
+              <Route exact path='/' component={Category} />
               <Route exact path='/basket' render={() => (<Basket addToBasket={addToBasket} items={items} removeItemOne={removeItemOne} removeItem={removeItem} clearItems={clearItems}/>)}/>
               <Route path='/category/:id' component={Product}/>
               <Route path='/product/:id' render={() => (<Details addToBasket={addToBasket}/>)}/>
@@ -72,15 +71,6 @@ function App() {
       </Router>
   );
 }
-
-//Home page from here 
-const Home = () => (
-
-  <div>
-    <h1>Home</h1>
-  </div>
-   
-);
 
 
 export default App;
