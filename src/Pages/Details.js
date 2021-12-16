@@ -8,7 +8,7 @@ import ProductDetails from "../Components/ProductDetail";
 const Details = ( {addToBasket} ) => {
 
     const { id } = useParams();
-    const { data: details, error, isPending } = useFetch("http://localhost:8080/products/" + id);
+    const { data: details, error, isPending } = useFetch("https://db01-4-menuservice.herokuapp.com/api/public/products/"+id);
 
         return (
             <div>
