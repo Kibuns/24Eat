@@ -1,0 +1,39 @@
+.column {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+
+.button {
+  text-align: center;
+}
+
+.image {
+  height: 300px;
+  width: 300px;
+}
+
+.info {
+  width: 75%;
+  margin: auto;
+  margin-top: 25px;
+  text-align: left;
+}
+
+.description {
+  margin-bottom: 30px;
+}
+
+.line {
+  width: 100%;
+  margin: auto;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}

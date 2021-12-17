@@ -1,5 +1,5 @@
 import React from "react";
-import TableCheckService from "../ApiService/TableCheckAPIService";
+import TableCheckService from "../QR-code/TableCheckAPIService";
 
 export default class TableNr extends React.Component {
   state = {
