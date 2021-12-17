@@ -15,7 +15,7 @@ const HeaderBar = () => {
         <Nav className="me-auto">
           <Link
             style={{ textDecoration: "none", color: "white" }}
-            to={`/category`}
+            to={`/`}
           >
             Menu
           </Link>

@@ -6,18 +6,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import Col from "react-bootstrap/Col";
 
 const ProductList = ({ products }) => {
-  let history = useHistory();
 
   return (
     <div>
-      <Col xs sm md={1}>
-        <ArrowBackIosIcon fontSize="large" onClick={() => history.goBack()} />
-      </Col>
       <Col xs sm md="auto" />
 
       {products.map((product) => (

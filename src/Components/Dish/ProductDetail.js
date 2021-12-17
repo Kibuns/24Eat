@@ -51,6 +51,11 @@ const ProductDetails = ({ details, addToBasket }) => {
           <hr className="line" />
         </div>
         <div className="info">
+          <h4>Allergies</h4>
+          <p>{details.allergies}</p>
+          <hr className="line" />
+        </div>
+        <div className="info">
           <div className="left">
             <p>${details.price}</p>
           </div>

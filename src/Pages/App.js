@@ -77,8 +77,7 @@ function App() {
       <div className="App">
         <HeaderBar />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/category" component={Category} />
+          <Route exact path="/" component={Category} />
           <Route
             exact
             path="/basket"
@@ -102,12 +101,5 @@ function App() {
     </Router>
   );
 }
-
-//Home page from here
-const Home = () => (
-  <div>
-    <h1>Home</h1>
-  </div>
-);
 
 export default App;
