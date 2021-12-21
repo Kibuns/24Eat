@@ -3,11 +3,12 @@ import Item from './Item'
 import { Button, ListItem, List, ListItemText } from '@mui/material';
 
 
-export default function Basketlist({items, removeItem, addToBasket, removeItemOne, clearItems}) {
+export default function Basketlist({items, removeItem, addToBasket, removeItemOne, clearItems, handleSnackbarOpen}) {
     
     const BasketItems = () => {
 
         function handleOrderClick(){
+            handleSnackbarOpen()
             clearItems()
         }
 
@@ -21,13 +22,13 @@ export default function Basketlist({items, removeItem, addToBasket, removeItemOn
                     <Item key={item.productId} removeItem={removeItem} addToBasket={addToBasket} removeItemOne={removeItemOne} item={item}/>
                    );
                 })}
-            <ListItem
-                secondaryAction={
-                    <Button edge="start" variant="outlined" onClick= {handleOrderClick} >order</Button>   
-                }
-            >
-                <ListItemText primary={"Total: €" + totalPrice} />
-            </ListItem>
+                <ListItem secondaryAction={
+                    <Button edge="start" variant="outlined" onClick= {handleOrderClick}>
+                        order
+                    </Button>  
+                }>
+                    <ListItemText primary={"Total: €" + totalPrice} />
+                </ListItem>
             </List>
         )
     }
