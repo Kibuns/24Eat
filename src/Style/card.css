@@ -21,3 +21,10 @@
   h6 {
       margin-top: 10px;
   }
+  .overlay {
+    position: 'absolute';
+    top: '20px';
+    left: '20px';
+    color: 'black';
+    background-color: 'white';
+ }

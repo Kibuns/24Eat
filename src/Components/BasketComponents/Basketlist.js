@@ -7,7 +7,7 @@ import axios from 'axios';
 const client = new W3CWebSocket('ws://127.0.0.1:8000');
 
 
-export default function Basketlist({items, removeItem, addToBasket, removeItemOne, clearItems}) {
+export default function Basketlist({items, removeItem, addToBasket, removeItemOne, clearItems, handleSnackbarOpen}) {
     
     const apiUrl = "http://localhost:8080/api";
     const tableNr = localStorage.getItem("TableNr");
@@ -44,6 +44,7 @@ export default function Basketlist({items, removeItem, addToBasket, removeItemOn
     const BasketItems = () => {
 
         function handleOrderClick(){
+            handleSnackbarOpen()
             clearItems()
         }
 

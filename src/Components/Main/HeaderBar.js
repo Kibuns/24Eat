@@ -2,7 +2,7 @@ import { Container } from "reactstrap";
 import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import TableNr from "./TableNr";
+import TableNr from "../QR-code/TableNr";
 
 const HeaderBar = () => {
   return (
@@ -15,7 +15,7 @@ const HeaderBar = () => {
         <Nav className="me-auto">
           <Link
             style={{ textDecoration: "none", color: "white" }}
-            to={`/category`}
+            to={`/`}
           >
             Menu
           </Link>
