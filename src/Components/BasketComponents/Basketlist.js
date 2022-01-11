@@ -4,12 +4,12 @@ import { Button, ListItem, List, ListItemText } from '@mui/material';
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
 import axios from 'axios';
 
-const client = new W3CWebSocket('ws://127.0.0.1:8000');
+const client = new W3CWebSocket('ws://websocket-server-mediaan.herokuapp.com');
 
 
 export default function Basketlist({items, removeItem, addToBasket, removeItemOne, clearItems, handleSnackbarOpen}) {
     
-    const apiUrl = "http://localhost:8080/api";
+    const apiUrl = "https://db01-4-menuservice.herokuapp.com/api";
     const tableNr = localStorage.getItem("TableNr");
 
 
