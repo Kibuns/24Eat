@@ -1,19 +1,18 @@
 import React from 'react'
 import Item from './Item'
 import { Button, ListItem, List, ListItemText } from '@mui/material';
-import { w3cwebsocket as W3CWebSocket } from 'websocket';
 import axios from 'axios';
 
-const client = new W3CWebSocket('ws://127.0.0.1:8000');
+const client = new WebSocket('ws://websocket-server-mediaan.herokuapp.com');
 
 
 export default function Basketlist({items, removeItem, addToBasket, removeItemOne, clearItems}) {
     
-    const apiUrl = "http://localhost:8080/api";
+    const apiUrl = "https://db01-4-menuservice.herokuapp.com/api";
     const tableNr = localStorage.getItem("TableNr");
 
 
-    const Order = async (dishes) => {
+    const handleOrder = async (dishes) => {
 
         const emptyOrder = {
             tableId: tableNr? tableNr : 0,
@@ -34,6 +33,7 @@ export default function Basketlist({items, removeItem, addToBasket, removeItemOn
             .then((response) => {
                 console.log(JSON.stringify(orderId));
                 client.send(JSON.stringify(orderId));
+                clearItems();
             })
         })
         .catch(function () {
@@ -42,10 +42,6 @@ export default function Basketlist({items, removeItem, addToBasket, removeItemOn
 
 
     const BasketItems = () => {
-
-        function handleOrderClick(){
-            clearItems()
-        }
 
         var totalPrice = 0;
 
@@ -59,7 +55,7 @@ export default function Basketlist({items, removeItem, addToBasket, removeItemOn
                 })}
             <ListItem
                 secondaryAction={
-                    <Button edge="start" variant="outlined" onClick= {() => Order(items)} >order</Button>   
+                    <Button edge="start" variant="outlined" onClick= {() => handleOrder(items)} >order</Button>   
                 }
             >
                 <ListItemText primary={"Total: €" + totalPrice} />

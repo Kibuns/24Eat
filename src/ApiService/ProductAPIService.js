@@ -1,5 +1,5 @@
-const PRODUCTS_REST_API = 'http://localhost:8080/api/products';
-const categoryUrl = 'http://localhost:8080/api/categories';
+const PRODUCTS_REST_API = 'https://db01-4-menuservice.herokuapp.com/api/public/categories/';
+
 
 class ProductAPIService {   
 
@@ -16,29 +16,22 @@ class ProductAPIService {
     }
 
     getCategories(){
-        return fetch(categoryUrl,{ 
-            method: 'get',
-                headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-                },
-                'credentials': 'same-origin'
-        })
+        return fetch(PRODUCTS_REST_API)
         .then(res => res.json());        
     }
 
-    getProductsByCategoryId(){
+    // getProductsByCategoryId(){
 
-        return fetch(categoryUrl ,{ 
-            method: 'get',
-                headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-                },
-                'credentials': 'same-origin'
-        })
-        .then(res => res.json());        
-    }
+    //     return fetch(categoryUrl ,{ 
+    //         method: 'get',
+    //             headers: {
+    //             'Accept': 'application/json, text/plain, */*',
+    //             'Content-Type': 'application/json',
+    //             },
+    //             'credentials': 'same-origin'
+    //     })
+    //     .then(res => res.json());        
+    // }
 
     getProductsById(){
 
