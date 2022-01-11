@@ -1,13 +1,16 @@
 import React from 'react'
+import { useEffect} from 'react'
 import Item from './Item'
 import { Button, ListItem, List, ListItemText } from '@mui/material';
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
 import axios from 'axios';
+import { useAuth0 } from "@auth0/auth0-react";
 
 var ws = new W3CWebSocket('ws://websocket-server-mediaan.herokuapp.com');
 
 export default function Basketlist({items, removeItem, addToBasket, removeItemOne, clearItems, handleSnackbarOpen}) {
     
+    const { getAccessTokenSilently } = useAuth0();
     const apiUrl = "https://db01-4-menuservice.herokuapp.com/api";
     const tableNr = localStorage.getItem("TableNr");
 
@@ -35,7 +38,6 @@ export default function Basketlist({items, removeItem, addToBasket, removeItemOn
         clearItems()
     }
 
-
     const Order = async (dishes) => {
 
         const emptyOrder = {
@@ -57,11 +59,31 @@ export default function Basketlist({items, removeItem, addToBasket, removeItemOn
             .then(() => {
                 console.log(JSON.stringify(orderId));
                 wsConnect(orderId)
+                const billItem = {
+                    bill_id: 1,
+                    order_id: orderId
+                }
+                Bill(billItem)
             })
         })
         .catch(function () {
         });
     }
+
+    const Bill = async (billItem) => {
+        console.log("test")
+        const token = await getAccessTokenSilently();
+        axios
+          .post(`${apiUrl}/private/billItem/post`, billItem, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(function (response) {
+              console.log(response.data)
+          })
+          .catch(function (error) {});
+      };
 
 
     const BasketItems = () => {
