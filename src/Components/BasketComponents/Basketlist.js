@@ -4,13 +4,36 @@ import { Button, ListItem, List, ListItemText } from '@mui/material';
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
 import axios from 'axios';
 
-const client = new W3CWebSocket('ws://websocket-server-mediaan.herokuapp.com');
-
+var ws = new W3CWebSocket('ws://websocket-server-mediaan.herokuapp.com');
 
 export default function Basketlist({items, removeItem, addToBasket, removeItemOne, clearItems, handleSnackbarOpen}) {
     
     const apiUrl = "https://db01-4-menuservice.herokuapp.com/api";
     const tableNr = localStorage.getItem("TableNr");
+
+    function wsConnect(msg) {
+        setTimeout(
+            function () {
+                if (ws.readyState === WebSocket.OPEN) {
+                    console.log('new ws connected')
+                    sendMsg(msg)
+                    return;
+                } else {
+                    if(ws.readyState !== WebSocket.CONNECTING)
+                    ws = new W3CWebSocket('ws://websocket-server-mediaan.herokuapp.com');
+
+                    console.log("wait for connection...")
+                    wsConnect();
+                }
+    
+            }, 5);
+    }
+
+    function sendMsg(msg) {
+        ws.send(JSON.stringify(msg));
+        handleSnackbarOpen()
+        clearItems()
+    }
 
 
     const Order = async (dishes) => {
@@ -31,9 +54,9 @@ export default function Basketlist({items, removeItem, addToBasket, removeItemOn
             });
             axios
             .post(`${apiUrl}/public/orderitems`, dishes)
-            .then((response) => {
+            .then(() => {
                 console.log(JSON.stringify(orderId));
-                client.send(JSON.stringify(orderId));
+                wsConnect(orderId)
             })
         })
         .catch(function () {
@@ -42,11 +65,6 @@ export default function Basketlist({items, removeItem, addToBasket, removeItemOn
 
 
     const BasketItems = () => {
-
-        function handleOrderClick(){
-            handleSnackbarOpen()
-            clearItems()
-        }
 
         var totalPrice = 0;
 
