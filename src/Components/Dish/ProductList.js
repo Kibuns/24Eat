@@ -27,7 +27,10 @@ const ProductList = ({ products }) => {
                   <CardMedia
                     style={{ height: "250px", paddingTop: "2%", opacity: 1 }}
                     component="img"
-                    image={product.image}
+                    image={product.image 
+                            ?product.image 
+                            :placeholderImage                        
+                          }
                     title="Product image"
                     alt="Product image"
                     onError={({ currentTarget }) => {
@@ -41,7 +44,10 @@ const ProductList = ({ products }) => {
                   <CardMedia
                     style={{ height: "250px", paddingTop: "2%", opacity: 0.3 }}
                     component="img"
-                    image={product.image}
+                    image={product.image 
+                            ?product.image 
+                            :placeholderImage                        
+                          }
                     title="Product image"
                     alt="Product image"
                     onError={({ currentTarget }) => {

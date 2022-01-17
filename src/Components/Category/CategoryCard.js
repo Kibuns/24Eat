@@ -11,7 +11,6 @@ import {
 import placeholderImage from "../Media/placeholder-image.png";
 
 function CategoryCard({ category }) {
-  console.log(category);
   return (
     <Grid item md={4} sm={4} xs={4}>
       <div key={category.id}>
