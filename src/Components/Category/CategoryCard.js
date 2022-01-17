@@ -20,24 +20,17 @@ function CategoryCard({ category }) {
         >
           <Card sx={{}}>
             <CardActionArea>
-              {category.image ?(
                 <CardMedia 
                 component="img" 
                 height="140" 
-                image={category.image}
+                image={category.image 
+                        ?category.image 
+                        :placeholderImage                        
+                      }
                 onError={({ currentTarget }) => {
                   currentTarget.onerror = null; // prevents looping
                   currentTarget.src=placeholderImage;
                 }}/>
-              ) : (
-                <CardMedia 
-                component="img" 
-                height="140" 
-                image={placeholderImage}
-                />
-              )
-
-              }
               
               <CardContent>
                 <Typography gutterBottom variant="h7" component="div">
