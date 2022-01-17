@@ -7,6 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import Col from "react-bootstrap/Col";
+import placeholderImage from "../Media/placeholder-image.png";
 
 const ProductList = ({ products }) => {
 
@@ -29,6 +30,10 @@ const ProductList = ({ products }) => {
                     image={product.image}
                     title="Product image"
                     alt="Product image"
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src=placeholderImage;
+                    }}
                   />
                 </div>
               ) : (
@@ -39,6 +44,10 @@ const ProductList = ({ products }) => {
                     image={product.image}
                     title="Product image"
                     alt="Product image"
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src=placeholderImage;
+                    }}
                   />
                   <div
                     style={{

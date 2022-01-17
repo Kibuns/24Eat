@@ -8,8 +8,10 @@ import {
   CardMedia,
   Grid,
 } from "@mui/material";
+import placeholderImage from "../Media/placeholder-image.png";
 
 function CategoryCard({ category }) {
+  console.log(category);
   return (
     <Grid item md={4} sm={4} xs={4}>
       <div key={category.id}>
@@ -19,7 +21,25 @@ function CategoryCard({ category }) {
         >
           <Card sx={{}}>
             <CardActionArea>
-              <CardMedia component="img" height="140" image={category.image} />
+              {category.image ?(
+                <CardMedia 
+                component="img" 
+                height="140" 
+                image={category.image}
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src=placeholderImage;
+                }}/>
+              ) : (
+                <CardMedia 
+                component="img" 
+                height="140" 
+                image={placeholderImage}
+                />
+              )
+
+              }
+              
               <CardContent>
                 <Typography gutterBottom variant="h7" component="div">
                   {category.name}
