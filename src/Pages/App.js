@@ -6,9 +6,11 @@ import Category from "./Category";
 import Basket from "./Basket";
 import HeaderBar from "../Components/Main/HeaderBar";
 import Details from "../Pages/Details";
+import { TableCodeContext } from "../USECONTEXT/TableCodeContext";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [code, setCode] = useState("Helllooo");
 
   const LOCAL_STORAGE_KEY = "Basket.items";
 
@@ -78,19 +80,21 @@ function App() {
         <HeaderBar />
         <Switch>
           <Route exact path="/" component={Category} />
-          <Route
-            exact
-            path="/basket"
-            render={() => (
-              <Basket
-                addToBasket={addToBasket}
-                items={items}
-                removeItemOne={removeItemOne}
-                removeItem={removeItem}
-                clearItems={clearItems}
-              />
-            )}
-          />
+          <TableCodeContext.Provider value="hello">
+            <Route
+              exact
+              path="/basket"
+              render={() => (
+                <Basket
+                  addToBasket={addToBasket}
+                  items={items}
+                  removeItemOne={removeItemOne}
+                  removeItem={removeItem}
+                  clearItems={clearItems}
+                />
+              )}
+            />
+          </TableCodeContext.Provider>
           <Route path="/category/:id" component={Product} />
           <Route
             path="/product/:id"
