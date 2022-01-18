@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Dish/product.css";
-import { Button } from "@mui/material";
+import { Button, Snackbar, Alert } from "@mui/material";
 
 const ProductDetails = ({ details, addToBasket }) => {
+  const [open, setOpen] = useState(false)
+
   function handleAddClick() {
+    handleSnackbarOpen()
     addToBasket({
       productId: details.id,
       name: details.name,
       price: details.price,
       image: details.image ? details.image : null,
     });
+    
   }
+
+  const handleSnackbarOpen = () => {
+    setOpen(true);
+  };
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  
 
   if (details.inStock === false) {
     return (
@@ -63,6 +79,18 @@ const ProductDetails = ({ details, addToBasket }) => {
             <Button variant="outlined" onClick={handleAddClick}>
               Add to cart
             </Button>
+            <Snackbar
+              open={open}
+              autoHideDuration={2000}
+              onClose={handleSnackbarClose}
+            >
+              <Alert
+                onClose={handleSnackbarClose}
+                severity="success"
+              >
+                {details.name} has been added to the basket
+              </Alert>
+            </Snackbar>
           </div>
         </div>
       </div>

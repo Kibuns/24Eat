@@ -6,9 +6,12 @@ import Category from "./Category";
 import Basket from "./Basket";
 import HeaderBar from "../Components/Main/HeaderBar";
 import Details from "../Pages/Details";
+import { TableContext } from "../Components/USECONTEXT/TableContext";
+const queryParams = new URLSearchParams(window.location.search);
 
 function App() {
   const [items, setItems] = useState([]);
+  const [tablekey, setTablekey] = useState(queryParams.get("tablekey"));
 
   const LOCAL_STORAGE_KEY = "Basket.items";
 
@@ -75,28 +78,30 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <HeaderBar />
-        <Switch>
-          <Route exact path="/" component={Category} />
-          <Route
-            exact
-            path="/basket"
-            render={() => (
-              <Basket
-                addToBasket={addToBasket}
-                items={items}
-                removeItemOne={removeItemOne}
-                removeItem={removeItem}
-                clearItems={clearItems}
-              />
-            )}
-          />
-          <Route path="/category/:id" component={Product} />
-          <Route
-            path="/product/:id"
-            render={() => <Details addToBasket={addToBasket} />}
-          />
-        </Switch>
+        <TableContext.Provider value={{ tablekey, setTablekey }}>
+          <HeaderBar />
+          <Switch>
+            <Route exact path="/" component={Category} />
+            <Route
+              exact
+              path="/basket"
+              render={() => (
+                <Basket
+                  addToBasket={addToBasket}
+                  items={items}
+                  removeItemOne={removeItemOne}
+                  removeItem={removeItem}
+                  clearItems={clearItems}
+                />
+              )}
+            />
+            <Route path="/category/:id" component={Product} />
+            <Route
+              path="/product/:id"
+              render={() => <Details addToBasket={addToBasket} />}
+            />
+          </Switch>
+        </TableContext.Provider>
       </div>
     </Router>
   );

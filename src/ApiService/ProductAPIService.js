@@ -24,7 +24,7 @@ class ProductAPIService {
 
     getProductsByCategoryId(){
 
-        return fetch(CATEGORIESBYID_REST_API ,{ 
+        return fetch(categoryUrl ,{ 
             method: 'get',
                 headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -37,7 +37,7 @@ class ProductAPIService {
 
     getProductsById(){
 
-        return fetch(PRODUCTSBYID_REST_API ,{ 
+        return fetch(PRODUCTS_REST_API +'/' ,{ 
             method: 'get',
                 headers: {
                 'Accept': 'application/json, text/plain, */*',
