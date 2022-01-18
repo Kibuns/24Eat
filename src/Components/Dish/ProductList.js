@@ -7,7 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import Col from "react-bootstrap/Col";
-import placeholderImage from "../Media/placeholder-image.png";
+import placeholderImage from "../../Media/placeholder-image.png";
 
 const ProductList = ({ products }) => {
 
