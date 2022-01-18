@@ -1,5 +1,7 @@
 import React from "react";
 import TableCheckService from "../QR-code/TableCheckAPIService";
+import { useContext } from "react";
+import { TableContext } from "../USECONTEXT/TableContext";
 
 export default class TableNr extends React.Component {
   state = {

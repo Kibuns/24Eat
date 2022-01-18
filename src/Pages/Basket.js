@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import Basketlist from '../Components/BasketComponents/Basketlist'
-import {List, Snackbar, Alert} from '@mui/material';
+import React, { useState, useContext } from "react";
+import Basketlist from "../Components/BasketComponents/Basketlist";
+import { List, Snackbar, Alert } from "@mui/material";
+import { TableContext } from "../Components/USECONTEXT/TableContext";
 
-function Basket({items, addToBasket, removeItemOne, removeItem, clearItems}) {
-  const [open, setOpen] = useState(false)
-  const [basketHasItems, setbasketHasItems] = useState(false)
+function Basket({ items, addToBasket, removeItemOne, removeItem, clearItems }) {
+  const [open, setOpen] = useState(false);
+  const [basketHasItems, setbasketHasItems] = useState(false);
+  const { tablekey, setTablekey } = useContext(TableContext);
 
   const handleSnackbarOpen = () => {
-    if(items.length > 0){setbasketHasItems(true)} 
-    else {setbasketHasItems(false)}
+    if (items.length > 0) {
+      setbasketHasItems(true);
+    } else {
+      setbasketHasItems(false);
+    }
     setOpen(true);
   };
 
@@ -21,37 +26,38 @@ function Basket({items, addToBasket, removeItemOne, removeItem, clearItems}) {
 
   return (
     <>
-      <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-        <Basketlist items = {items} removeItem = {removeItem} addToBasket = {addToBasket} removeItemOne={removeItemOne} clearItems={clearItems} handleSnackbarOpen={handleSnackbarOpen}/>
+      <h1>{tablekey}</h1>
+      <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+        <Basketlist
+          items={items}
+          removeItem={removeItem}
+          addToBasket={addToBasket}
+          removeItemOne={removeItemOne}
+          clearItems={clearItems}
+          handleSnackbarOpen={handleSnackbarOpen}
+        />
       </List>
       {basketHasItems ? (
         <Snackbar
-        open={open}
-        autoHideDuration={2000}
-        onClose={handleSnackbarClose}
+          open={open}
+          autoHideDuration={2000}
+          onClose={handleSnackbarClose}
         >
-          <Alert
-            onClose={handleSnackbarClose}
-            severity="success"
-          >
+          <Alert onClose={handleSnackbarClose} severity="success">
             Your order has been sent to the kitchen!
           </Alert>
         </Snackbar>
       ) : (
         <Snackbar
-        open={open}
-        autoHideDuration={2000}
-        onClose={handleSnackbarClose}
-      >
-        <Alert
+          open={open}
+          autoHideDuration={2000}
           onClose={handleSnackbarClose}
-          severity="error"
         >
-          Please add products before ordering.
-        </Alert>
-      </Snackbar>
+          <Alert onClose={handleSnackbarClose} severity="error">
+            Please add products before ordering.
+          </Alert>
+        </Snackbar>
       )}
-      
     </>
   );
 }

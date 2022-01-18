@@ -5,11 +5,6 @@ class TableCheckAPIService {
   CheckTable() {
     return fetch(TABLECHECK_REST_API + "check/" + queryParams.get("tablekey"), {
       method: "get",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      credentials: "same-origin",
     }).then((res) => res.json());
   }
 
