@@ -4,17 +4,16 @@ import { Button, Snackbar, Alert } from "@mui/material";
 import placeholderImage from "../../Media/placeholder-image.png";
 
 const ProductDetails = ({ details, addToBasket }) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   function handleAddClick() {
-    handleSnackbarOpen()
+    handleSnackbarOpen();
     addToBasket({
       productId: details.id,
       name: details.name,
       price: details.price,
       image: details.image ? details.image : null,
     });
-    
   }
 
   const handleSnackbarOpen = () => {
@@ -27,26 +26,22 @@ const ProductDetails = ({ details, addToBasket }) => {
     }
     setOpen(false);
   };
-  
 
-  console.log(details.inStock);
+  // console.log(details.inStock);
   if (details.inStock === false || details.inStock === null) {
     return (
       <div>
         <h1>Product details</h1>
         <div>
-          <img 
-            className="image" 
-            src={details.image 
-                  ?details.image 
-                  :placeholderImage                        
-                }
-            alt="Dish" 
+          <img
+            className="image"
+            src={details.image ? details.image : placeholderImage}
+            alt="Dish"
             onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
-              currentTarget.src=placeholderImage;
+              currentTarget.src = placeholderImage;
             }}
-            />
+          />
           <div className="info">
             <h2>{details.name}</h2>
             <h6>${details.price}</h6>
@@ -63,18 +58,15 @@ const ProductDetails = ({ details, addToBasket }) => {
       <div>
         <div>
           <h1>Product details</h1>
-          <img 
-            className="image" 
-            src={details.image 
-                  ?details.image 
-                  :placeholderImage                        
-                }
-            alt="Dish" 
+          <img
+            className="image"
+            src={details.image ? details.image : placeholderImage}
+            alt="Dish"
             onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
-              currentTarget.src=placeholderImage;
+              currentTarget.src = placeholderImage;
             }}
-            />
+          />
         </div>
         <div className="info">
           <h2>{details.name}</h2>
@@ -108,10 +100,7 @@ const ProductDetails = ({ details, addToBasket }) => {
               autoHideDuration={2000}
               onClose={handleSnackbarClose}
             >
-              <Alert
-                onClose={handleSnackbarClose}
-                severity="success"
-              >
+              <Alert onClose={handleSnackbarClose} severity="success">
                 {details.name} has been added to the basket
               </Alert>
             </Snackbar>

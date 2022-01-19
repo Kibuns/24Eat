@@ -26,7 +26,6 @@ function Basket({ items, addToBasket, removeItemOne, removeItem, clearItems }) {
 
   return (
     <>
-      <h1>{tablekey}</h1>
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
         <Basketlist
           items={items}

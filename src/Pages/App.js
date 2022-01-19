@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const storedItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     if (storedItems) setItems(storedItems);
-    console.log("Page loaded");
+    // console.log("Page loaded");
   }, []);
 
   useEffect(() => {
