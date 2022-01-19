@@ -25,16 +25,7 @@ export default function Item({item, removeItem, addToBasket, removeItemOne}) {
             }
         >
             <ListItemAvatar>
-            <Avatar 
-                src={item.image 
-                        ?item.image 
-                        :placeholderImage                        
-                    }
-                onError={({ currentTarget }) => {
-                    currentTarget.onerror = null; // prevents looping
-                    currentTarget.src=placeholderImage;
-                  }}
-            />
+            <Avatar src={item.image}/>
             </ListItemAvatar>
                 <ListItemText primary={item.name} secondary={"€" + item.price * item.quantity} />
 
