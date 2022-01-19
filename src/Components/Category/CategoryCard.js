@@ -8,7 +8,7 @@ import {
   CardMedia,
   Grid,
 } from "@mui/material";
-import placeholderImage from "../Media/placeholder-image.png";
+import placeholderImage from "../../Media/placeholder-image.png";
 
 function CategoryCard({ category }) {
   return (
