@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../Dish/product.css";
 import { Button, Snackbar, Alert } from "@mui/material";
+import placeholderImage from "../../Media/placeholder-image.png";
 
 const ProductDetails = ({ details, addToBasket }) => {
   const [open, setOpen] = useState(false)
@@ -28,12 +29,24 @@ const ProductDetails = ({ details, addToBasket }) => {
   };
   
 
-  if (details.inStock === false) {
+  console.log(details.inStock);
+  if (details.inStock === false || details.inStock === null) {
     return (
       <div>
         <h1>Product details</h1>
         <div>
-          <img className="image" src={details.image} alt="Dish" />
+          <img 
+            className="image" 
+            src={details.image 
+                  ?details.image 
+                  :placeholderImage                        
+                }
+            alt="Dish" 
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src=placeholderImage;
+            }}
+            />
           <div className="info">
             <h2>{details.name}</h2>
             <h6>${details.price}</h6>
@@ -50,7 +63,18 @@ const ProductDetails = ({ details, addToBasket }) => {
       <div>
         <div>
           <h1>Product details</h1>
-          <img className="image" src={details.image} alt="Dish" />
+          <img 
+            className="image" 
+            src={details.image 
+                  ?details.image 
+                  :placeholderImage                        
+                }
+            alt="Dish" 
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src=placeholderImage;
+            }}
+            />
         </div>
         <div className="info">
           <h2>{details.name}</h2>

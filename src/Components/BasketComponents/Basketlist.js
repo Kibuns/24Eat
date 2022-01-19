@@ -8,7 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { TableContext } from "../USECONTEXT/TableContext";
 import TableCheckAPIService from "../QR-code/TableCheckAPIService";
 
-var ws = new W3CWebSocket("ws://websocket-server-mediaan.herokuapp.com");
+var ws = new W3CWebSocket("wss://websocket-server-mediaan.herokuapp.com");
 
 export default function Basketlist({
   items,
