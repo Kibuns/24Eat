@@ -12,11 +12,11 @@ export default class TableNr extends React.Component {
     TableCheckService.GetTableNr()
       .then((data) => {
         localStorage.setItem("TableNr", data);
-        console.log(this.state.data);
+        // console.log(this.state.data);
         this.setState({ tablenr: data });
       })
       .catch(function (ex) {
-        console.log("Response parsing failed. Error: ", ex);
+        // console.log("Response parsing failed. Error: ", ex);
       });
   }
 

@@ -29,24 +29,24 @@ export default function Basketlist({
       .get("https://qr-service-mediaan.herokuapp.com/api/check/" + tablekey)
       .then((data) => {
         setCheck(data.data);
-        console.log(data);
-        console.log(
-          "for tablekey " + tablekey + " the check resulted in: " + data.data
-        );
+        // console.log(data);
+        // console.log(
+        //   "for tablekey " + tablekey + " the check resulted in: " + data.data
+        // );
       });
   }, [check]);
 
   function wsConnect(msg) {
     setTimeout(function () {
       if (ws.readyState === WebSocket.OPEN) {
-        console.log("new ws connected");
+        // console.log("new ws connected");
         sendMsg(msg);
         return;
       } else {
         if (ws.readyState !== WebSocket.CONNECTING)
           ws = new W3CWebSocket("ws://websocket-server-mediaan.herokuapp.com");
 
-        console.log("wait for connection...");
+        // console.log("wait for connection...");
         wsConnect();
       }
     }, 5);
@@ -63,20 +63,20 @@ export default function Basketlist({
       tableId: tableNr ? tableNr : 0,
       status: 0,
     };
-    console.log(emptyOrder);
+    // console.log(emptyOrder);
 
     if (items.length > 0 && check) {
-      console.log("tablekey correct: " + tablekey);
+      //   console.log("tablekey correct: " + tablekey);
       axios
         .post(`${apiUrl}/public/orders`, emptyOrder)
         .then((response) => {
-          console.log(response);
+          //   console.log(response);
           var orderId = response.data.id;
           dishes.forEach((dish) => {
             dish["orderId"] = orderId;
           });
           axios.post(`${apiUrl}/public/orderitems`, dishes).then(() => {
-            console.log(JSON.stringify(orderId));
+            // console.log(JSON.stringify(orderId));
             wsConnect(orderId);
             const billItem = {
               bill_id: 1,
@@ -87,7 +87,7 @@ export default function Basketlist({
         })
         .catch(function () {});
     } else if (!check) {
-      console.log("tablekey wrong");
+      //   console.log("tablekey wrong");
       alert(
         "This table device is not authorized to order. Wrong or missing table key"
       );
@@ -97,7 +97,7 @@ export default function Basketlist({
   };
 
   const Bill = async (billItem) => {
-    console.log("test");
+    // console.log("test");
     const token = await getAccessTokenSilently();
     axios
       .post(`${apiUrl}/private/billItem/post`, billItem, {
@@ -106,7 +106,7 @@ export default function Basketlist({
         },
       })
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch(function (error) {});
   };
