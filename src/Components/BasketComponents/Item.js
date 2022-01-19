@@ -3,7 +3,6 @@ import { ListItem, ListItemText, ListItemAvatar, Avatar, IconButton } from '@mui
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
-import placeholderImage from "../../Media/placeholder-image.png";
 
 export default function Item({item, removeItem, addToBasket, removeItemOne}) {
     function handleItemClickAdd(e) {
